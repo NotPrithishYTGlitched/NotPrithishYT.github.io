@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact - NotPrithishYT's Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/jpeg" href="logo.jpg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #1A1A1A;
+            color: #F5F5F5;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            width: 100%;
+            background: #1A1A1A;
+            position: fixed;
+            top: 0;
+            z-index: 100;
+            border-bottom: 4px solid #1E90FF;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 20px;
+        }
+
+        .navbar .logo {
+            width: clamp(48px, 5vw, 60px);
+            height: clamp(48px, 5vw, 60px);
+            image-rendering: pixelated;
+            border: 3px solid #00CED1;
+            transition: transform 0.3s ease;
+        }
+
+        .navbar .logo:hover {
+            transform: scale(1.2);
+        }
+
+        .navbar .brand-text {
+            margin-left: 10px;
+            color: #1E90FF;
+            font-family: 'Press Start 2P', cursive;
+            font-size: clamp(16px, 2vw, 20px);
+            text-shadow: 2px 2px #00FF7F;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-family: 'Press Start 2P', cursive;
+            font-size: clamp(12px, 1.5vw, 14px);
+            color: #F5F5F5;
+            padding: 10px 20px;
+            background: #1A1A1A;
+            border: 2px solid #1E90FF;
+            transition: background 0.3s ease, transform 0.3s ease;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+            background: #1E90FF;
+            color: #1A1A1A;
+            transform: translateY(-3px);
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 28px;
+            color: #1E90FF;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTQ1IDc5LjE2MDQ1OSwgMjAxOC8wOC8xMy0xNjo0MDoyMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTkgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjJCRkI5MUE4QjE1MTExRTlCRDA0QTM4MDE0RjU0M0YiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MkJGQjkxQTlCMTUxMTFFOUJEMDRBMzgwMTRGNTQzRiI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjJCRkI5MUE2QjE1MTExRTlCRDA0QTM4MDE0RjU0M0YiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MkJGQjkxQTdCMTUxMTFFOUJEMDRBMzgwMTRGNTQzRiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pj4eB4UAAABUSURBVHjaY2AYBaMhGIAk4P9/gf///z8YhKXh4eEBW1tb+wckJiZmZkYGZkC8vLx0A+zs7CIiISEBZmZmZmBwcHCAkZGRgZmZmQUYGRkZGBkZGQBhYABW3yOmlQAAAABJRU5ErkJggg==') repeat;
+            padding: 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle, #00CED1 10%, #00FF7F 20%, transparent 30%);
+            animation: generatorPulse 3s ease infinite;
+            z-index: 0;
+        }
+
+        @keyframes generatorPulse {
+            0% { transform: scale(1) rotate(0deg); opacity: 0.5; }
+            50% { transform: scale(1.5) rotate(180deg); opacity: 0.8; }
+            100% { transform: scale(1) rotate(360deg); opacity: 0.5; }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            z-index: 1;
+            background: #FFFFFF;
+            padding: 40px;
+            border: 4px solid #1E90FF;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero h1 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: clamp(32px, 6vw, 56px);
+            color: #1E90FF;
+            text-shadow: 3px 3px #1A1A1A;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: clamp(16px, 2.5vw, 20px);
+            color: #1A1A1A;
+            margin-bottom: 30px;
+        }
+
+        .contact-section {
+            max-width: 1280px;
+            margin: 80px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .contact-card {
+            background: #FFFFFF;
+            color: #1A1A1A;
+            padding: 25px;
+            border: 3px solid #00CED1;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        .contact-card h2 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: clamp(18px, 3vw, 24px);
+            color: #1E90FF;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px #00FF7F;
+        }
+
+        .contact-card p {
+            font-size: clamp(14px, 2vw, 16px);
+            margin-bottom: 15px;
+        }
+
+        .contact-card a {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            color: #1A1A1A;
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(14px, 2vw, 16px);
+            padding: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .contact-card a:hover {
+            color: #1E90FF;
+        }
+
+        .contact-card img {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+
+        footer {
+            background: #1A1A1A;
+            color: #888;
+            text-align: center;
+            padding: 20px;
+            border-top: 4px solid #1E90FF;
+            font-family: 'Press Start 2P', cursive;
+            font-size: clamp(10px, 1.5vw, 12px);
+        }
+
+        @media (max-width: 768px) {
+            .navbar-content {
+                padding: 10px 15px;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #1A1A1A;
+                padding: 20px 0;
+                border-top: 2px solid #1E90FF;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 15px;
+                font-size: 16px;
+            }
+
+            .hero {
+                height: 80vh;
+            }
+
+            .hero h1 {
+                font-size: clamp(28px, 5vw, 40px);
+            }
+
+            .hero p {
+                font-size: clamp(14px, 2vw, 16px);
+            }
+
+            .contact-section {
+                margin: 50px auto;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .navbar {
+                padding: 20px 0;
+            }
+
+            .contact-section {
+                margin: 100px auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-content">
+            <div style="display: flex; align-items: center;">
+                <img src="image.png" alt="Logo" class="logo" style="border-radius: 50px;"/>
+                <div class="brand-text">NotPrithishYT</div>
+            </div>
+            <button class="hamburger">☰</button>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </div>
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Contact NotPrithishYT</h1>
+            <p>Reach out to me through my social platforms!</p>
+        </div>
+    </div>
+    <div class="contact-section">
+        <div class="contact-card">
+            <h2>Contact Information</h2>
+            <p>NotPrithishYT</p>
+            <a href="https://www.youtube.com/@notprithishyt6998">
+                <img src="https://pngdownload.io/wp-content/uploads/2023/12/YouTube-Logo-PNG-Symbol-for-Video-Platform-Transparent-jpg.webp" alt="YouTube Logo">
+                YouTube
+            </a>
+            <br>
+            <a href="">
+                <img src="https://pngate.com/wp-content/uploads/2025/03/discord-app-icon-2025-blue-controller-logo-1.png" alt="Discord Logo">
+                Discord
+            </a>
+        </div>
+    </div>
+    <footer>
+        Copyright © 2025 All rights reserved.
+    </footer>
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
